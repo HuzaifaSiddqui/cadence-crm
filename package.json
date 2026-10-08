@@ -1,0 +1,23 @@
+{
+  "name": "cadence-crm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cadence — AI-powered CRM SaaS (MERN, OpenAI, Stripe, workflow automation)",
+  "type": "module",
+  "scripts": {
+    "setup": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "seed": "npm run seed --prefix server",
+    "test:api": "node scripts/api-smoke.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "playwright": "^1.48.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

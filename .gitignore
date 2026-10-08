@@ -1,0 +1,11 @@
+node_modules/
+dist/
+client/dist/
+.mongo_data/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.vscode/
+

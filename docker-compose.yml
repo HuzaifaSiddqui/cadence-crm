@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes: [mongo-data:/data/db]
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on: [mongo]
+    ports: ["4000:4000"]
+    environment:
+      MONGO_URI: mongodb://mongo:27017/cadence
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      CLIENT_URL: ${CLIENT_URL:-http://localhost:4000}
+      AUTO_SEED: "true"
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+
+volumes:
+  mongo-data:
